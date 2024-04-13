@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-^3dc&nzwnjoffz!(7#j_bdorb)pmirj0*^rflg%@-071_0wp%^"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["tbaye.pythonanywhere.com", "localhost", "127.0.0.1"]
 
@@ -59,7 +59,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-CORS_ALLOWED_ORIGINS = ["*"]
 
 ROOT_URLCONF = "join_backend.urls"
 
@@ -151,3 +150,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+
+# CORS header Config
+
+CORS_ALLOWED_ORIGINS = ["*"]
