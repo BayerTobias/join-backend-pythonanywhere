@@ -27,7 +27,7 @@ def password_reset_token_created(
         "current_user": "Tobias Bayer",
         "username": reset_password_token.user.username,
         "email": reset_password_token.user.email,
-        "reset_password_url": "http://localhost:4200/reset-password?token={}".format(
+        "reset_password_url": " https://join.tobias-bayer.dev/reset-password?token={}".format(
             # instance.request.build_absolute_uri(
             #     reverse("password_reset:reset-password-confirm")
             # ),

@@ -138,6 +138,7 @@ AUTH_USER_MODEL = "join.CustomUser"
 # default static files settings for PythonAnywhere.
 # see https://help.pythonanywhere.com/pages/DjangoStaticFiles for more info
 MEDIA_ROOT = "/home/tbaye/join_backend/media"
+MEDIA_ROOT = "/media"
 MEDIA_URL = "/media/"
 STATIC_ROOT = "/home/tbaye/join_backend/static"
 STATIC_URL = "/static/"
