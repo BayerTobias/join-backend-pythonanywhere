@@ -36,7 +36,6 @@ class LoginView(ObtainAuthToken):
         user = serializer.validated_data["user"]
         token, created = Token.objects.get_or_create(user=user)
         contacts = ContactSerializer(user.contacts.all(), many=True).data
-
         user_data = UserSerializer(user).data
 
         return Response(
@@ -120,7 +119,6 @@ class TaskView(APIView):
         if serializer.is_valid():
             category_id = request.data.get("category")
             category = get_object_or_404(Category, pk=category_id)
-
             assigned_user_ids = request.data.get("assigned_users", [])
             assigned_users = CustomUser.objects.filter(pk__in=assigned_user_ids)
 
@@ -133,11 +131,6 @@ class TaskView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class SingleTaskView(APIView):
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
 
     """
     Update a single task.
@@ -156,7 +149,6 @@ class SingleTaskView(APIView):
         serializer = TaskSerializer(instance=task, data=request.data, partial=True)
 
         if serializer.is_valid():
-
             serializer.save(
                 author=request.user,
             )
@@ -286,7 +278,6 @@ class DeleteUserView(APIView):
     """
 
     def delete(self, request):
-
         user = request.user
         user.delete()
 
@@ -310,9 +301,7 @@ class UserListView(APIView):
     """
 
     def get(self, request):
-
         users = CustomUser.objects.all()
-
         serializer = UserListSerializer(users, many=True)
 
         return Response(serializer.data)
@@ -336,6 +325,7 @@ class ContactView(APIView):
         serializer = ContactSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(user=request.user)
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

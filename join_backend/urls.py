@@ -19,7 +19,6 @@ from django.contrib import admin
 from django.urls import path, include
 from join.views import (
     TaskView,
-    SingleTaskView,
     LoginView,
     LogoutView,
     CreateUserView,
@@ -37,7 +36,7 @@ urlpatterns = [
     path("logout/", LogoutView.as_view(), name="logout"),
     path("check_auth/", checkAuth.as_view(), name="check_auth"),
     path("tasks/", TaskView.as_view(), name="tasks"),
-    path("tasks/<int:task_id>/", SingleTaskView.as_view(), name="single_task"),
+    path("tasks/<int:task_id>/", TaskView.as_view(), name="single_task"),
     path("categorys/", CategorysView.as_view(), name="categorys"),
     path("users/", UserListView.as_view(), name="user_list"),
     path("create_user/", CreateUserView.as_view(), name="register"),
